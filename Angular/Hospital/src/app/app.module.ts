@@ -26,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImgComponent } from './img/img.component';
 import { PopadminComponent } from './popadmin/popadmin.component';
+import { ExcelComponent } from './excel/excel.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PopadminComponent } from './popadmin/popadmin.component';
     HeaderComponent,
     FooterComponent,
     ImgComponent,
-    PopadminComponent
+    PopadminComponent,
+    ExcelComponent
   ],
   imports: [
     BrowserModule,

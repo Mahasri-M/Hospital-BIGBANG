@@ -22,6 +22,10 @@
   </nav>
   <br>
   <br>
+  <br>
+  
+  <br>
+  <br>
 <h2>Doctors</h2>
 <table class="table">
   <thead>
@@ -36,19 +40,21 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let doctor of doctors">
-        
-          <td>{{doctor.id}}</td>
-          <img class="card-img-top" [src]="doctor.image" width="10px" height="100px" style="border-radius: 50%;" alt="Doctor Image">
-          <td>{{doctor.name}}</td>
-          <td>{{doctor.email}}</td>
-          <td>{{doctor.role}}</td>
-          <td>{{doctor.specialization_name}}</td>
-          <td>
-            <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger" id="delete">Delete</button> 
-        </td>
-                   
-      </tr>
+    <tr *ngFor="let doctor of doctors">
+      <td class="vertical-align">{{ doctor.id }}</td>
+      <td>
+        <div class="image-container">
+          <img [src]="doctor.image" class="card-img-top" alt="Doctor Image">
+        </div>
+      </td>
+      <td class="vertical-align">{{ doctor.name }}</td>
+      <td class="vertical-align">{{ doctor.email }}</td>
+      <td class="vertical-align">{{ doctor.role }}</td>
+      <td class="vertical-align">{{ doctor.specialization_name }}</td>
+      <td class="vertical-align">
+        <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger" id="delete">Delete</button>
+      </td>
+    </tr>
 
       </tbody>
 </table>
@@ -69,12 +75,14 @@
   <tbody>
       <tr *ngFor="let user of users">
        
-          <td>{{user.id}}</td>
-          <img class="card-img-top" [src]="user.image" width="10px" height="100px" style="border-radius: 50%;" alt="Doctor Image">
-          <td>{{user.name}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-          <td>
+          <td class="vertical-align">{{user.id}}</td>
+          <div class="image-container">
+            <img [src]="user.image" class="card-img-top" alt="Doctor Image">
+          </div>
+          <td class="vertical-align">{{user.name}}</td>
+          <td class="vertical-align">{{user.email}}</td>
+          <td class="vertical-align">{{user.role}}</td>
+          <td class="vertical-align">
             <button (click)="deleteUser(user.id)" class="btn btn-danger" id="delete">Delete</button> 
         </td>
                    

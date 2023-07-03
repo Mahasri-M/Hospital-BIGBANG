@@ -14,6 +14,7 @@ import { RequestComponent } from './request/request.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImgComponent } from './img/img.component';
+import { ExcelComponent } from './excel/excel.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path:'request',component:RequestComponent},
   {path:'header',component:HeaderComponent},
   {path:'footer',component:FooterComponent},
-  {path:'img',component:ImgComponent}
+  {path:'img',component:ImgComponent},
+  {path:'excel',component:ExcelComponent}
   
 ];
 
