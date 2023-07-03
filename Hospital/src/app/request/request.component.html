@@ -1,0 +1,69 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">MEDICO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/homepage" routerLinkActive="active">Dashboard</a>
+          </li>
+          <li class="nav-item" *ngIf="flaguser">
+            <a class="nav-link active" routerLink="/appointment" routerLinkActive="active">Book Appointment</a>
+          </li>
+          <li class="nav-item" *ngIf="flag">
+            <a class="nav-link active" routerLink="/request" routerLinkActive="active">View Appointments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/login" routerLinkActive="active">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" id="img">
+    <h2>Appointments</h2>
+</div>
+
+
+<table class="table">
+  <thead>
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Age</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Slot</th>
+          <th scope="col">Problem</th>
+         
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let user of users">
+        
+          <td>{{user.appointmentId}}</td>
+          <td>{{user.patientName}}</td>
+          <td>{{user.patientEmail}}</td>
+          <td>{{user.age}}</td>
+          <td>{{user.gender}}</td>
+          <td>{{user.slot}}</td>
+          <td>{{user.problem}}</td>
+          <td>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger" id="delete">Over</button> 
+        </td>
+                   
+      </tr>
+
+      </tbody>
+</table>
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Notification</h2>
+<mat-dialog-content>
+    <p>Appointment successful. You can now download the PDF.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="dialogRef.close('openPdf')">Open PDF</button>
+    <button mat-button (click)="dialogRef.close('downloadPdf')">Download PDF</button>
+</mat-dialog-actions>

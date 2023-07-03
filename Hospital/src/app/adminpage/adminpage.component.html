@@ -1,0 +1,108 @@
+<!-- <div class="container border border-grey" *ngIf="showFormDetails">
+<p>Name: {{ formDetails?.name }}</p>
+<p>Email: {{ formDetails?.email }}</p>
+<p>Role: {{ formDetails?.role }}</p>
+<p>Specialization:{{ formDetails?.specialization_name }}</p>
+
+<button class="btn btn-primary" (click)="approveForm()">
+    <i class="fas fa-check-circle"></i>&nbsp; Approve</button> &nbsp; &nbsp;
+
+<button class="btn btn-danger" (click)="declineForm()">
+    <i class="fas fa-times-circle"></i>&nbsp; Decline
+  </button>
+</div> -->
+
+<div class="table_wrap">
+<table class="table table-light table-bordered w-100 rounded-top">
+<thead>
+    <tr>
+        <th class="text-primary" scope="col">ID</th>
+        <th class="text-primary" scope="col">NAME</th>
+        <th class="text-primary" scope="col">EMAIL</th>
+        <th class="text-primary" scope="col">ROLE</th>
+        <th class="text-primary" scope="col">SPECIFICATION</th>
+        <th class="text-primary" scope="col">EXPERIENCE</th>
+        <th class="text-primary" scope="col">DEGREE</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let staff of staffs">
+        <td>{{staff.id}}</td>
+        <td>{{staff.name}}</td>
+        <td>{{staff.email}}</td>
+        <td>{{staff.role}}</td>
+        <td>{{staff.specialization_name}}</td>
+        <td>{{staff.experience}}</td>
+        <td>{{staff.degree}}</td>
+        <td><button type="button" class="btn btn-success btn-lg btn-block" (click)="approveForm()">Accept</button></td>
+        <!-- <td><button type="button" class="btn btn-danger btn-lg btn-block" (click)="deleteDoctorRequest(staff)">Reject</button></td> -->
+    </tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="container" *ngIf="!showFormDetails">
+    <p>No requests yet!</p>
+  </div>
+
+  <h2>Doctors</h2>
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Specialization</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let doctor of doctors">
+          
+            <td>{{doctor.id}}</td>
+            <td>{{doctor.name}}</td>
+            <td>{{doctor.email}}</td>
+            <td>{{doctor.role}}</td>
+            <td>{{doctor.specialization_name}}</td>
+            <td>
+              <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger" id="delete">Delete</button> 
+          </td>
+                     
+        </tr>
+
+        </tbody>
+</table>
+
+<h2>Users</h2>
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Delete</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+          
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td>
+              <button (click)="deleteUser(user.id)" class="btn btn-danger" id="delete">Delete</button> 
+          </td>
+                     
+        </tr>
+
+        </tbody>
+</table>
+
+
+
+
