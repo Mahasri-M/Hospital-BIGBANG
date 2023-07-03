@@ -54,6 +54,9 @@
       <td class="vertical-align">
         <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger" id="delete">Delete</button>
       </td>
+      <td>
+        <button (click)="openUpdateForm(doctor)" class="btn btn-info" id="upd">Update</button>
+    </td> 
     </tr>
 
       </tbody>
@@ -85,6 +88,7 @@
           <td class="vertical-align">
             <button (click)="deleteUser(user.id)" class="btn btn-danger" id="delete">Delete</button> 
         </td>
+       
                    
       </tr>
 
@@ -93,5 +97,45 @@
 
 
 
+<div class="container">
+  <form *ngIf="isUpdateFormOpen" class="border border-gray" id="form1">
+      <table>
+          
+      <tr class="form-group" >
+        <td>  <label for="studid"> Id : </label></td>
+        <td>  <input type="text" id="id" class="form-control"
+          name="studid" [(ngModel)]="id"></td>
+      </tr>
+      <tr class="form-group" >
+        <td>  <label for="studname"> Name : </label></td>
+        <td>  <input type="text" id="studname" [(ngModel)]="student.name" class="form-control"
+          [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr class="form-group" >
+         <td> <label for="studcity"> Email : </label></td>
+        <td>  <input type="text" id="studcity" [(ngModel)]="student.email" class="form-control"
+          [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr class="form-group" >
+         <td> <label for="studpin">Role : </label></td>
+        <td>  <input type="text" id="studpin" [(ngModel)]="student.role" class="form-control"
+          [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+
+      <div class="form-group">
+        <input type="file" class="form-control-file" id="image" (change)="onFileSelected($event)" accept="image/*" required>
+      </div>
+      <tr class="form-group" >
+          <td> <label for="studpin">Specialization : </label></td>
+         <td>  <input type="text" id="studpin" [(ngModel)]="student.specialization_name" class="form-control"
+           [ngModelOptions]="{standalone: true}"></td>
+       </tr>
+      <tr class="form-group" >
+          <input type="button" value="Update" class="btn btn-success" (click)="UpdateStudentById()"  id="update">
+      </tr>
+      </table>
+  </form>
+  
+  </div>
 
 

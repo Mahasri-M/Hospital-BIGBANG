@@ -16,6 +16,7 @@ export class SignupService{
   private approveUrl="https://localhost:7239/api/Approve";
   private patient="https://localhost:7239/api/Patient";
   private searchUrl="https://localhost:7239/api/Users/filteringspecialization";
+  private userUrl="https://localhost:7239/api/Users";
     constructor(private httpClient:HttpClient)
     {
 
@@ -124,5 +125,11 @@ signupStaff(register:registerModel)
 public getAppoint():Observable<any>
 {
     return this.httpClient.get(`https://localhost:7239/api/Patient`);
+}
+
+public UpdateUser(id:number, bus:any)
+{
+  const url = `${this.userUrl}/${id}`;
+  return this.httpClient.put(url , bus);
 }
   }

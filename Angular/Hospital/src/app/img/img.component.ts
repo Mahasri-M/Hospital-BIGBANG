@@ -55,22 +55,6 @@ export class ImgComponent implements OnInit {
   constructor(private http: HttpClient,private router :Router , 
     private signupService : SignupService, private fb:FormBuilder,private dialog: MatDialog) 
   {
-  
-    // this.register =
-    //   {
-    //     name:"",
-    //     email:"",
-    //     role: "",
-    //     password: "",
-    //      hashKey: "",
-    //     passwordClear: "",
-    //     specialization_name:"",
-    //     experience:"",
-    //     degree:"",
-    //     image:""
-        
-    //   }
-      
       this.loggedInUser=new LoggedInUserModel();
     if (localStorage.getItem("role") == "Admin") {
       this.flag = true;

@@ -48,7 +48,7 @@ namespace Hospital.Controllers
             }
         }
 
-        [HttpPut("{id}/image")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<User>> Put(int id, [FromForm] User doctor, IFormFile imageFile)
         {
             try

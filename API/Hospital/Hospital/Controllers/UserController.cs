@@ -1,4 +1,5 @@
-﻿using Hospital.Models.DTO;
+﻿using Hospital.Models;
+using Hospital.Models.DTO;
 using Hospital.Repository.Service;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -38,22 +39,32 @@ namespace Hospital.Controllers
             }
             return Ok(user);
         }
-        [HttpPut("{email}")]
-        public ActionResult<UserDTO> UpdateUser(string email, [FromBody] UserDTO userDTO)
+        [HttpPost("users/{userId}")]
+        public IActionResult UpdateUser(int userId, [FromBody] UserUpdateDTO updateUserDTO)
         {
-            if (email != userDTO.Email)
+            UserDTO updatedUser = _service.UpdateUser(userId, updateUserDTO);
+            if (updatedUser == null)
             {
-                return BadRequest("Invalid email address");
+                return BadRequest("Failed to update user.");
             }
 
-            var user = _service.UpdateUser(userDTO);
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
-            return Ok(user);
+            return Ok(updatedUser);
         }
-
+        [HttpPut("{id}")]
+        public async Task<ActionResult<User>> Put(int id, [FromForm] User doctor, IFormFile imageFile)
+        {
+            try
+            {
+                doctor.Id = id;
+                var updatedDoctor = await _service.UpdateDoctor(doctor, imageFile);
+                return Ok(updatedDoctor);
+            }
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
 
     }
 }
