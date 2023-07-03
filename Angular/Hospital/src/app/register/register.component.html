@@ -1,0 +1,115 @@
+<section class="vh-8" style="background-color: aliceblue;">
+  <div class="container py-3 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-80">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-4 col-lg-5 d-none d-md-block">
+              <img src="../../assets/login.jpg"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 710px; width: 1800px;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+
+                <div class="d-flex align-items-center mb-3 pb-1">
+                  <i class="fas fa-solid fa-stethoscope fa-2x me-3"></i>
+                  <span class="h1 fw-bold mb-0">Medico</span>
+                </div>
+
+                <br>
+
+                <form #register_form="ngForm">
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" required pattern="[a-zA-Z0-9]*"
+                      placeholder="Username" id="name" name="name" #id="ngModel" [(ngModel)]="register.name" />
+                    <div *ngIf="(id?.dirty || id?.touched)" class="text-danger">
+                      <div *ngIf="!id?.valid">
+                        <div *ngIf="id.errors?.['required']">
+                          User name is required
+                        </div>
+                        <div *ngIf="id.value && id.errors && !id.errors?.['required']">
+                          Please enter a valid input [Username should not contain special charaters]
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-outline mb-4">
+                    <input type="email" class="form-control form-control-lg" placeholder="Email" name="email"
+                      [(ngModel)]="register.email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                      #email="ngModel" />
+                    <div *ngIf="email.invalid && email.touched" class="text-danger">
+                      <div *ngIf="email.errors?.['required']">Email is required.</div>
+                      <div *ngIf="email.errors?.['pattern']">Please enter a valid email address.</div>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <select class="form-control form-control-lg" [(ngModel)]="register.role" name="role" (change)="showSpecialization()" required
+                      #role="ngModel">
+                      <option value="" disabled selected hidden>Select Role</option>
+                      <option value="Doctor">Doctor</option>
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
+                    <div *ngIf="role.invalid && role.touched" class="text-danger">
+                      <div *ngIf="role.errors?.['required']">Role is required.</div>
+                    </div>
+                  </div>
+                 
+                    <div class="form-outline mb-4">              
+                    <select *ngIf="register.role === 'Doctor'" class="form-control form-control-lg" [(ngModel)]="register.specialization_name" name="specialization_name" required
+                      #specialization_name="ngModel">
+                      <option value="" disabled selected hidden>Select Specialization</option>
+                    
+                      <option *ngFor="let user of users" value="{{user.specialization_name}}">{{user.specialization_name}}</option>
+                      </select>
+                  
+                      <!-- <input type="text" class="form-control form-control-lg" required pattern="[a-zA-Z0-9]*"
+                        placeholder="Specialization" id="specialization" name="specialization" #id="ngModel" [(ngModel)]="register.specialization_name" /> -->
+                    </div>
+
+                    <div class="form-outline mb-4">             
+                        <input *ngIf="register.role === 'Doctor'" type="text" class="form-control form-control-lg" required pattern="[0-9]*"
+                      placeholder="Experience" id="experience" name="experience" #id="ngModel" [(ngModel)]="register.experience" />
+                        </div>
+
+                        <div class="form-outline mb-4">             
+                          <input *ngIf="register.role === 'Doctor'" type="text" class="form-control form-control-lg" required pattern="[a-zA-Z0-9]*"
+                        placeholder="Degree" id="degree" name="degree" #id="ngModel" [(ngModel)]="register.degree" />
+                          </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password"
+                      [(ngModel)]="register.passwordClear" name="password" required
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" #password="ngModel" />
+                    <div *ngIf="password.invalid && password.touched" class="text-danger">
+                      <div *ngIf="password.errors?.['required']">Password is required.</div>
+                      <div *ngIf="password.errors?.['pattern']">
+                        Password should contain a minimum of 8 characters with at least 1 uppercase, 1 lowercase, 1
+                        digit, and 1 special character.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 mb-9">
+                    <button class="btn btn-dark btn-lg btn-block" type="button" (click)="onPost()">Register</button>
+                    <div *ngIf="showError" class="text-danger">Please fill all the fields.</div>
+                  </div>
+<br>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Already have an account?
+                    <a (click)="login_here()" style="color: #393f81;cursor: pointer;">Login here </a>
+                  </p>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">MEDICO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/admin" routerLinkActive="active">Approval Request</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/manage" routerLinkActive="active">Manage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/login" routerLinkActive="active">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+<h2>Doctors</h2>
+<table class="table">
+  <thead>
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Specialization</th>
+          <th scope="col">Delete</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let doctor of doctors">
+        
+          <td>{{doctor.id}}</td>
+          <img class="card-img-top" [src]="doctor.image" width="10px" height="100px" style="border-radius: 50%;" alt="Doctor Image">
+          <td>{{doctor.name}}</td>
+          <td>{{doctor.email}}</td>
+          <td>{{doctor.role}}</td>
+          <td>{{doctor.specialization_name}}</td>
+          <td>
+            <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger" id="delete">Delete</button> 
+        </td>
+                   
+      </tr>
+
+      </tbody>
+</table>
+
+<h2>Users</h2>
+<table class="table">
+  <thead>
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Delete</th>
+         
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let user of users">
+       
+          <td>{{user.id}}</td>
+          <img class="card-img-top" [src]="user.image" width="10px" height="100px" style="border-radius: 50%;" alt="Doctor Image">
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger" id="delete">Delete</button> 
+        </td>
+                   
+      </tr>
+
+      </tbody>
+</table>
+
+
+
+
+

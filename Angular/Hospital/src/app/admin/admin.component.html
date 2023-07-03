@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">MEDICO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/admin" routerLinkActive="active">Approval Request</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/manage" routerLinkActive="active">Manage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/login" routerLinkActive="active">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  
+  <div class="container" >
+    <div class="row">
+      <ng-container *ngFor="let dum of Dummy; let i = index">
+        <div class="col-md-6">
+          <div class="card border border-grey">
+            <div class="card-body d-flex flex-column align-items-center">
+              <img class="card-img-top" [src]="dum.image" alt="Doctor Image">
+              <p>Id: {{dum.approveId}}</p>
+              <p>Name: {{dum.name}}</p>
+              <p>Email: {{dum.email}}</p>
+              <p>Role: {{dum.role}}</p>
+              <p>Specialization: {{dum.specialization_name}}</p>
+              <p>Experience: {{dum.experience}}</p>
+              <p>Degree: {{dum.degree}}</p>
+              <div class="row mt-auto">
+                <div class="col-md-7">
+                  <button class="btn btn-success btn-block" (click)="Approve(dum)">
+                    <i class="fas fa-check-circle"></i>&nbsp; Approve
+                  </button>
+                </div>
+                <div class="col-md-5">
+                  <button class="btn btn-danger btn-block" style="white-space: nowrap;" (click)="Decline(dum)">
+                    <i class="fas fa-times-circle"></i>&nbsp; Decline
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-100" *ngIf="(i + 1) % 2 === 0 || i === Dummy.length - 1"></div>
+      </ng-container>
+    </div>
+    
+  </div>
+  <div class="container justify-content-center" *ngIf="!showFormDetails">
+    <p>No requests yet!</p>
+  </div>
