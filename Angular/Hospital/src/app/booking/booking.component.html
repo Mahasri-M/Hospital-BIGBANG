@@ -80,6 +80,12 @@
  <br>
 
                 <form [formGroup]="pdfview" (ngSubmit)="submitPassengerDetails()">
+                  
+                  <!-- <div class="form-outline mb-4 form-group">
+                    <input type="text" class="form-control form-control-lg" required 
+                      id="id" name="id" formControlName="id"  />
+                  </div> -->
+                  
 
                   <div class="form-outline mb-4 form-group">
                     <input type="text" class="form-control form-control-lg" required 
@@ -118,11 +124,11 @@
                               
 
                   <div class="pt-3 mb-9">
-                    <button class="btn btn-dark btn-lg btn-block" type="submit" >Register</button>
+                    <button class="btn btn-dark btn-lg btn-block" type="submit" >Book</button>
                     
                   </div>
 <br>
-
+                    <!-- {{Id}} -->
                 
                 </form>
               </div>
@@ -133,13 +139,6 @@
     </div>
   </div>
 </section>
-
-<!-- <br>
-<p *ngIf="bookingResult">{{ bookingResult }}</p>
-<br>
-<br>
-<button (click)="generatePdf('open')" class="btn btn-secondary" [disabled]="!bookingResult">Open PDF</button>&nbsp;
-<button (click)="generatePdf('download')" class="btn btn-secondary" [disabled]="!bookingResult">Download PDF</button> -->
 
   </div>
   

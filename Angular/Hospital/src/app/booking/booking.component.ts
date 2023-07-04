@@ -44,10 +44,13 @@ export class BookingComponent implements OnInit {
     }
   }
 
+  doctorId!:any;
   ngOnInit(): void {
     this.pdf();
-    const doctorId = this.route.snapshot.paramMap.get('doctorId');
-    this.signupService.getDoctor(doctorId).subscribe(
+    this.doctorId = this.route.snapshot.paramMap.get('doctorId');
+    this.pdfview.get('id')?.setValue(this.doctorId);
+
+    this.signupService.getDoctor(this.doctorId).subscribe(
       (data: any) => {
         this.doctor = data;
       },
@@ -59,6 +62,7 @@ export class BookingComponent implements OnInit {
   
   private pdf(): void {
     this.pdfview = this.formBuilder.group({
+      id:[],
       patientName: [],
       patientEmail: [],
       age: [],
@@ -91,9 +95,9 @@ export class BookingComponent implements OnInit {
         
           dialogRef.afterClosed().subscribe(result => {
             if (result === 'openPdf') {
-              this.generatePdf('open'); // Pass 'open' mode
+              this.generatePdf('open'); 
             } else if (result === 'downloadPdf') {
-              this.generatePdf('download'); // Pass 'download' mode
+              this.generatePdf('download'); 
             }
           });
           

@@ -15,6 +15,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImgComponent } from './img/img.component';
 import { ExcelComponent } from './excel/excel.component';
+import { ManagementComponent } from './management/management.component';
+import { ExceluserComponent } from './exceluser/exceluser.component';
 
 
 const routes: Routes = [
@@ -32,7 +34,9 @@ const routes: Routes = [
   {path:'header',component:HeaderComponent},
   {path:'footer',component:FooterComponent},
   {path:'img',component:ImgComponent},
-  {path:'excel',component:ExcelComponent}
+  {path:'excel',component:ExcelComponent},
+  {path:'management',component:ManagementComponent},
+  {path:'exceluser',component:ExceluserComponent}
   
 ];
 

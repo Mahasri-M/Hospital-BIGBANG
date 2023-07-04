@@ -74,47 +74,47 @@ private getUsers(): void {
     );
   }
 
-  //update user 
-  id!:number;
-  public UpdateStudentById(){
-    const registerData: registerModel = {
-      name: this.student.name,
-      email: this.student.email,
-      role: this.student.role,
-      password: '', // Provide a value for the missing properties
-      hashKey: '',
-      passwordClear: this.student.passwordClear,
-      specialization_name: this.student.specialization_name,
-      experience: this.student.experience,
-      degree: this.student.degree,
-      image: this.student.image,
-    };
-    console.log(registerData)
-    this.student.image = this.selectedImage as string || '';
+//   //update user 
+//   id!:number;
+//   public UpdateStudentById(){
+//     const registerData: registerModel = {
+//       name: this.student.name,
+//       email: this.student.email,
+//       role: this.student.role,
+//       password: '', // Provide a value for the missing properties
+//       hashKey: '',
+//       passwordClear: this.student.passwordClear,
+//       specialization_name: this.student.specialization_name,
+//       experience: this.student.experience,
+//       degree: this.student.degree,
+//       image: this.student.image,
+//     };
+//     console.log(registerData)
+//     this.student.image = this.selectedImage as string || '';
      
-    // this.http.put('https://localhost:7239/api/Users/' + this.id, data, options)
-    //   .subscribe(
-    //     response => {
-    //       console.log('success');
-    //     }
-    return this.signupService.UpdateUser(this.id ,this.student)
-    .subscribe( result =>
-      {
-        alert(" Student Updated ");
-      }
+//     // this.http.put('https://localhost:7239/api/Users/' + this.id, data, options)
+//     //   .subscribe(
+//     //     response => {
+//     //       console.log('success');
+//     //     }
+//     return this.signupService.UpdateUser(this.id ,this.student)
+//     .subscribe( result =>
+//       {
+//         alert(" Student Updated ");
+//       }
       
-        ,
-        error => {
-  if (error.status === 415) {
-    console.error('Unsupported Media Type. Please check the media type of the request payload.');
-    // Perform additional error handling or display an error message to the user
-  } else {
-    console.error('An error occurred:', error);
-    // Handle other types of errors
-  }
-}
-      );
-  }
+//         ,
+//         error => {
+//   if (error.status === 415) {
+//     console.error('Unsupported Media Type. Please check the media type of the request payload.');
+//     // Perform additional error handling or display an error message to the user
+//   } else {
+//     console.error('An error occurred:', error);
+//     // Handle other types of errors
+//   }
+// }
+//       );
+//   }
 
 public openUpdateForm(user: any): void {
   this.isUpdateFormOpen = true;
@@ -133,6 +133,17 @@ convertToBase64(file: File): void {
   reader.onload = () => {
     this.selectedImage = reader.result;
   };
+}
+id!:number;
+UpdateStudentById(): void {
+  this.student.image = this.selectedImage as string || '';
+  this.http.put(`https://localhost:7239/api/Users/${this.student.id}`, this.student)
+    .subscribe(() => {
+      console.log('Doctor updated successfully.');
+      
+    }, error => {
+      console.log('Error occurred while updating the doctor:', error);
+    });
 }
 }
 export class registerModel {

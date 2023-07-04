@@ -48,19 +48,37 @@ namespace Hospital.Controllers
             }
         }
 
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<User>> Put(int id, [FromForm] User doctor, IFormFile imageFile)
+        //{
+        //    try
+        //    {
+        //        doctor.Id = id;
+        //        var updatedDoctor = await _user.UpdateDoctor(doctor, imageFile);
+        //        return Ok(updatedDoctor);
+        //    }
+        //    catch (ArgumentException ex)
+        //    {
+        //        ModelState.AddModelError("", ex.Message);
+        //        return BadRequest(ModelState);
+        //    }
+        //}
+
         [HttpPut("{id}")]
-        public async Task<ActionResult<User>> Put(int id, [FromForm] User doctor, IFormFile imageFile)
+        public IActionResult UpdateUser(int id, User user)
         {
             try
             {
-                doctor.Id = id;
-                var updatedDoctor = await _user.UpdateDoctor(doctor, imageFile);
-                return Ok(updatedDoctor);
+                _user.UpdateUser(id, user);
+                return Ok();
             }
-            catch (ArgumentException ex)
+            catch(ArgumentException ex)
             {
-                ModelState.AddModelError("", ex.Message);
-                return BadRequest(ModelState);
+                return NotFound(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);  
             }
         }
 

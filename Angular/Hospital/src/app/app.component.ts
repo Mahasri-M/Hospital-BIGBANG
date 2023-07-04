@@ -21,26 +21,6 @@ export class AppComponent {
   }
 
 
-  // getInterns(){
-  //   this.router.navigateByUrl('getInterns')
-  // }
-  // getTickets(){
-  //   this.router.navigateByUrl('getAllTickets')
-  // }
-  
-  // logInTimes(){
-
-  // }
-  // viewProfiles(){
-  //   this.router.navigateByUrl('profile')
-  // }
-  // raiseTicket(){
-
-  // }
-  // getTicketDetails(){
-
-  // }
-
   logout(){
     localStorage.setItem("role","");
     this.router.navigateByUrl('login');

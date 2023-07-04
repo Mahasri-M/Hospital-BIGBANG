@@ -54,40 +54,40 @@ namespace Hospital.Repository.Service
 
         //update
 
-        public async Task<User> UpdateDoctor(User doctor, IFormFile imageFile)
-        {
-            // Retrieve the existing doctor from the database
-            var existingDoctor = await _UserContext.Users.FindAsync(doctor.Id);
+        //public async Task<User> UpdateDoctor(User doctor, IFormFile imageFile)
+        //{
+        //    // Retrieve the existing doctor from the database
+        //    var existingDoctor = await _UserContext.Users.FindAsync(doctor.Id);
 
-            if (existingDoctor == null)
-            {
-                throw new ArgumentException("Doctor not found");
-            }
+        //    if (existingDoctor == null)
+        //    {
+        //        throw new ArgumentException("Doctor not found");
+        //    }
 
-            // Update the properties of the existing doctor with the new values
-            existingDoctor.Name = doctor.Name;
-            existingDoctor.Email = doctor.Email;
+        //    // Update the properties of the existing doctor with the new values
+        //    existingDoctor.Name = doctor.Name;
+        //    existingDoctor.Email = doctor.Email;
 
-            // Update the image if a new file is provided
-            if (imageFile != null && imageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Doctor");
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, fileName);
+        //    // Update the image if a new file is provided
+        //    if (imageFile != null && imageFile.Length > 0)
+        //    {
+        //        var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads/Doctor");
+        //        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+        //        var filePath = Path.Combine(uploadsFolder, fileName);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await imageFile.CopyToAsync(stream);
-                }
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await imageFile.CopyToAsync(stream);
+        //        }
 
-                existingDoctor.Image = fileName;
-            }
+        //        existingDoctor.Image = fileName;
+        //    }
 
-            // Save the changes to the database
-            await _UserContext.SaveChangesAsync();
+        //    // Save the changes to the database
+        //    await _UserContext.SaveChangesAsync();
 
-            return existingDoctor;
-        }
+        //    return existingDoctor;
+        //}
 
 
         ////PostUser
@@ -98,6 +98,23 @@ namespace Hospital.Repository.Service
 
         //    return await _UserContext.Users.ToListAsync();
         //}
+
+        //update
+        public void UpdateUser(int id,User user)
+        {
+            var existingUser = _UserContext.Users.FirstOrDefault(u => u.Id==id);
+            if (existingUser == null)
+            {
+                throw new ArgumentException($"User with ID {id} not found");
+            }
+            existingUser.Name=user.Name;
+            existingUser.Email=user.Email;
+            existingUser.Experience=user.Experience;
+            existingUser.Degree=user.Degree;
+            existingUser.Image=user.Image;
+
+            _UserContext.SaveChanges();
+        }
 
         //Delete
         public async Task<List<User>?> DeleteUserById(int id)
