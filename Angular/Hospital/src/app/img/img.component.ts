@@ -108,8 +108,6 @@ export class ImgComponent implements OnInit {
   console.log(registerData)
     this.register.image = this.selectedImage as string || '';
     if(this.registerForm.valid){
-      
-     
         // this.signupService.signup(registerData).subscribe(data => {
         //   console.log("register in component")
         //   this.loggedInUser = data as LoggedInUserModel;

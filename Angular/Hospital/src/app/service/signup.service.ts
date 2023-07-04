@@ -132,4 +132,11 @@ public UpdateUser(id:number, bus:any)
   const url = `${this.userUrl}/${id}`;
   return this.httpClient.put(url , bus);
 }
+
+getUserByEmail(email: string): Observable<Course> {
+  const encodedEmail = encodeURIComponent(email);
+  return this.httpClient.get<Course>(`https://localhost:7239/api/Users/${encodedEmail}`);
+}
+
+
   }

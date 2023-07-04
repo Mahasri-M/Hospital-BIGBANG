@@ -5,7 +5,7 @@ export interface Course{
     role: string,
     passwordClear: string,
     image?:string,
-    specialization:string,
+    specialization_name:string,
     degree:string,
     experience:string
 }

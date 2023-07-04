@@ -19,11 +19,18 @@ namespace Hospital.Controllers
         {
             return _user.GetAllPatients();
         }
+        //[HttpGet("{id}")]
+        //public Patient GetById(int id)
+        //{
+        //    return _user.GetPatientById(id);
+        //}
+
         [HttpGet("{id}")]
-        public Patient GetById(int id)
+        public Patient GetByDoctorId(int id)
         {
-            return _user.GetPatientById(id);
+            return _user.GetPatientByDoctorId(id);
         }
+
         [HttpPost]
         public async Task<ActionResult<List<Patient>>> AddPatient(Patient user)
         {

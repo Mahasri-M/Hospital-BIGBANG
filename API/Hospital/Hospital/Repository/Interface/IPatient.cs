@@ -6,6 +6,7 @@ namespace Hospital.Repository.Interface
     {
         IEnumerable<Patient> GetAllPatients();
         Patient GetPatientById(int User_Id);
+        Patient GetPatientByDoctorId(int User_Id);
         Task<List<Patient>> Addpatient(Patient user);
         Task<List<Patient>?> DeletePatientById(int id);
     }

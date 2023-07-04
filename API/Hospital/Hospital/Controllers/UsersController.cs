@@ -25,6 +25,12 @@ namespace Hospital.Controllers
         {
             return _user.GetUserById(id);
         }
+        //[HttpGet("{id}")]
+        //public User GetIdByEmailId(string id)
+        //{
+        //    return _user.GetUserIdByEmail(id);
+        //}
+
         //[HttpPost]
         //public async Task<ActionResult<List<User>>> AddUser(User user)
         //{

@@ -24,7 +24,14 @@ namespace Hospital.Repository.Service
         {
             return _UserContext.Patients.FirstOrDefault(x => x.AppointmentId == User_Id);
         }
-        ////PostPatient
+
+        //GetPatientByDoctorId
+        public Patient GetPatientByDoctorId(int User_Id)
+        {
+            return _UserContext.Patients.FirstOrDefault(x => x.Id == User_Id);
+        }
+
+        //PostPatient
         public async Task<List<Patient>> Addpatient(Patient user)
         {
             _UserContext.Patients.Add(user);

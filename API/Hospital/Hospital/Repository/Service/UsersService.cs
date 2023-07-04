@@ -28,6 +28,13 @@ namespace Hospital.Repository.Service
         {
             return _UserContext.Users.FirstOrDefault(x => x.Id == User_Id);
         }
+
+        //GetUserIdByEmail
+        public User GetUserIdByEmail(string User_Email)
+        {
+            return _UserContext.Users.FirstOrDefault(x => x.Email == User_Email);
+        }
+
         public async Task<User> CreateDoctor([FromForm] User doctor, IFormFile imageFile)
         {
             if (imageFile == null || imageFile.Length == 0)

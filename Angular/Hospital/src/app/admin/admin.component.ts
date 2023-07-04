@@ -103,6 +103,7 @@ export class AdminComponent {
       }
       )
     }
+    
 
     public Approve(dum:any){
 
@@ -132,6 +133,7 @@ export class AdminComponent {
           alert("Error");
           }
       )
+      dum.approved = true;
 
     }
 

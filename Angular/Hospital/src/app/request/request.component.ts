@@ -13,6 +13,7 @@ export class RequestComponent implements OnInit {
   flaguser:boolean=false;
   public users: any;
   public doctors:any;
+  userId: number;
   constructor(private route: ActivatedRoute,private http: HttpClient, private signupService : SignupService){
     if (localStorage.getItem("role")=="Doctor")
     {
@@ -21,6 +22,18 @@ export class RequestComponent implements OnInit {
     if(localStorage.getItem("role")=="User"){
       this.flaguser=true;
     }
+  }
+
+  login(email: string, password: string) {
+  
+    this.signupService.getUserByEmail(email).subscribe(
+      (data: any) => {
+        const userId = data.id;
+      },
+      (error: any) => {
+        console.error('Error fetching user details:', error);
+      }
+    );
   }
 
   ngOnInit() {

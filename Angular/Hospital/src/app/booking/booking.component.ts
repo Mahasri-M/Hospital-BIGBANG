@@ -83,7 +83,7 @@ export class BookingComponent implements OnInit {
     if (this.pdfview.valid) {
       this.signupService.submitPassengerDetails(this.pdfview.value).subscribe(
         (result) => {
-          this.bookingResult = 'Booked successfully. Now you can view or download your ticket';
+          this.bookingResult = 'Booked successfully. Now you can view or download your appointment details';
           console.log(this.pdfview);
           const dialogRef = this.dialog.open(PoppdfComponent, {
             width: '400px',
@@ -127,11 +127,11 @@ export class BookingComponent implements OnInit {
                     text: 'Docter Details',
                     style: 'subheader',
                     colSpan: 2,
-                    fillColor: '#c76e7a',
+                    fillColor: '#ffc2d1',
                     alignment: 'center',
                     border: [true, true, true, true],
                     margin: [10, 10],
-                    bold: true,
+                    // bold: true,
                     fontSize: 14,
                     padding: [5, 5]
                   },
@@ -189,32 +189,32 @@ export class BookingComponent implements OnInit {
         styles: {
           mainheader: {
             fontSize: 18,
-            bold: true,
+            // bold: true,
             margin: [200, 0, 0, 10] as [number, number, number, number]
           },
           header: {
             fontSize: 18,
-            bold: true,
+            // bold: true,
             margin: [200, 50, 0, 10] as [number, number, number, number]
           },
           busNameValueStyle: {
-            fillColor: '#6a87a5',
+            fillColor: '#ffe5ec',
             color: '#000000',
             margin: [0, 10, 6, 8] as [number, number, number, number]
           },
           busNameLabelStyle: {
-            fillColor: '#a8c1d1',
+            fillColor: '#ffc2d1',
             color: '#000000',
             margin: [0, 10, 6, 8] as [number, number, number, number]
           },
           subheader: {
             fontSize: 14,
-            bold: true,
+            //bold: true,
             margin: [0, 20, 6, 20] as [number, number, number, number]
           },
           body: {
             fontSize: 12,
-            bold: false,
+            //bold: false,
             margin: [0, 15, 0, 9] as [number, number, number, number]
           },
           bodycontent: {
@@ -224,7 +224,7 @@ export class BookingComponent implements OnInit {
           },
           bodystyle: {
             fontSize: 12,
-            bold: true,
+            //bold: true,
             margin: [0, 15, 0, 9] as [number, number, number, number]
           },
           content: {
