@@ -78,6 +78,18 @@ export class BookingComponent implements OnInit {
   public downloadPdf(): void {
     this.generatePdf('download');
   }
+// public sendEmail():void{
+//   const formData = this.pdfview.value;
+//       const mailtoLink = `mailto:${formData.patientEmail}?subject=Appointment Details&body=Name: ${formData.patientName}%0D%0AAge: ${formData.age}%0D%0AGender: ${formData.gender}%0D%0ASlot: ${formData.slot}%0D%0AProblem: ${formData.problem}`;
+//       window.location.href = mailtoLink;
+// }
+public sendEmail(): void {
+  const formData = this.pdfview.value;
+  const mailtoLink = `mailto:${formData.patientEmail}?subject=Appointment Details&body=Name: ${formData.patientName}%0D%0AAge: ${formData.age}%0D%0AGender: ${formData.gender}%0D%0ASlot: ${formData.slot}%0D%0AProblem: ${formData.problem}%0D%0ADoctor Name: ${this.doctor.name}%0D%0ADoctor Email: ${this.doctor.email}%0D%0ADoctor Specialization: ${this.doctor.specialization_name}`;
+  window.location.href = mailtoLink;
+}
+
+  
   
   public submitPassengerDetails(): void {
     if (this.pdfview.valid) {
@@ -85,10 +97,11 @@ export class BookingComponent implements OnInit {
         (result) => {
           this.bookingResult = 'Booked successfully. Now you can view or download your appointment details';
           console.log(this.pdfview);
+          
           const dialogRef = this.dialog.open(PoppdfComponent, {
             width: '400px',
             data: {
-              message: "Appointment successfull.<br> Now you can download the PDF",
+              message: "Appointment successfull.<br> Now you can download the PDF.<br> You can get the details in Email",
               openMode: null
             }
           });
@@ -98,6 +111,8 @@ export class BookingComponent implements OnInit {
               this.generatePdf('open'); 
             } else if (result === 'downloadPdf') {
               this.generatePdf('download'); 
+            } else if (result === 'email'){
+              this.sendEmail();
             }
           });
           
@@ -241,9 +256,12 @@ export class BookingComponent implements OnInit {
         pdfDocGenerator.open();
       } else if (openMode === 'download') {
         pdfDocGenerator.download('booking_details.pdf');
-      }
+      } 
     } catch (error) {
       console.error('Error generating PDF:', error);
     }
+
+
+
   }
 }
