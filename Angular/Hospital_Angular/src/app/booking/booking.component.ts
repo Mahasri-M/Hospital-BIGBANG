@@ -83,7 +83,7 @@ export class BookingComponent implements OnInit {
 //       const mailtoLink = `mailto:${formData.patientEmail}?subject=Appointment Details&body=Name: ${formData.patientName}%0D%0AAge: ${formData.age}%0D%0AGender: ${formData.gender}%0D%0ASlot: ${formData.slot}%0D%0AProblem: ${formData.problem}`;
 //       window.location.href = mailtoLink;
 // }
-public sendEmail(): void {
+public sendEmail(doctor:any): void {
   const formData = this.pdfview.value;
   const mailtoLink = `mailto:${formData.patientEmail}?subject=Appointment Details&body=Name: ${formData.patientName}%0D%0AAge: ${formData.age}%0D%0AGender: ${formData.gender}%0D%0ASlot: ${formData.slot}%0D%0AProblem: ${formData.problem}%0D%0ADoctor Name: ${this.doctor.name}%0D%0ADoctor Email: ${this.doctor.email}%0D%0ADoctor Specialization: ${this.doctor.specialization_name}`;
   window.location.href = mailtoLink;
@@ -112,7 +112,7 @@ public sendEmail(): void {
             } else if (result === 'downloadPdf') {
               this.generatePdf('download'); 
             } else if (result === 'email'){
-              this.sendEmail();
+              this.sendEmail(this.doctor);
             }
           });
           

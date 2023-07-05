@@ -71,6 +71,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
+import { PopadminComponent } from '../popadmin/popadmin.component';
 
 
 @Component({
@@ -87,7 +88,7 @@ export class AdminComponent {
     showFormDetails = true;
     approveId !:number;
     Dummy !: any;
-
+    dum: any;
     ngOnInit():void{
       this.getDummyDetails();
       this.registrationService.formDetails$.subscribe(details => {
@@ -103,7 +104,7 @@ export class AdminComponent {
       }
       )
     }
-    
+   
 
     public Approve(dum:any){
 
@@ -113,11 +114,14 @@ export class AdminComponent {
       dum1.password="";
       
       this.registrationService.approveStaff(dum1).subscribe(data =>{
+          // const formData = this.pdfview.value;
+          const mailtoLink = `mailto:${dum1.email}?subject=Approval Details&body=Dear ${dum1.name},%0D%0A%0D%0AWe are writing to inform you that your request has been Approved.%0D%0A%0D%0ABest regards,%0D%0AYour Organization`;
+          window.location.href = mailtoLink;
          console.log("success");
       })
       this.registrationService.DeleteProduct(dum.approveId).subscribe(
-
-        (result) => {  const dialogRef = this.dialog.open(PopupComponent, {
+     
+        (result) => {  const dialogRef = this.dialog.open(PopadminComponent, {
           width: '400px',
           data: {
             message: "Doctor Approved!"
@@ -140,10 +144,22 @@ export class AdminComponent {
     public Decline(dum:any){
 
       this.registrationService.DeleteProduct(dum.approveId).subscribe(
-        // res=>{
-        //   alert("deleted")
-        // }
-        (result) => { alert("Staff Deleted");},
+        
+     
+        (result) => { const mailtoLink = `mailto:${dum.email}?subject=Approval Details&body=Dear ${dum.name},%0D%0A%0D%0AWe are writing to inform you that your request has been Rejected.%0D%0A%0D%0ABest regards,%0D%0AYour Organization`;
+        window.location.href = mailtoLink;
+        const dialogRef = this.dialog.open(PopadminComponent, {
+          width: '400px',
+          data: {
+            message: "Doctor Rejected!"
+          }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result === 'admin') {
+            this.router.navigateByUrl('admin');
+          }
+        });}
+     ,
         (error)  => {
           alert("Error");
           }
